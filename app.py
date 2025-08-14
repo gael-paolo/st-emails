@@ -42,6 +42,9 @@ with tab1:
     # Campos de entrada para redactar uno nuevo
     idea_nuevo_correo = st.text_area("💡 Describe brevemente tu idea para el nuevo correo", height=150, max_chars=3000, key="idea_nuevo")
 
+    # --- Parámetros seleccionados ---
+    st.subheader("Parámetros seleccionados")
+    idioma_salida_nuevo = st.selectbox("🌐 Idioma de salida", ["Español", "Inglés"], key="idioma_salida_nuevo")
     formalidad_nuevo = st.selectbox("🎩 Nivel de formalidad", ["Alto", "Medio", "Bajo"], key="formalidad_nuevo")
     detalle_nuevo = st.selectbox("🧾 Tamaño del correo", ["Breve", "Medio", "Detallado"], key="detalle_nuevo")
     tono_emocional_nuevo = st.selectbox("🎭 Tono emocional", ["Neutro", "Cortés", "Cercano", "Empático", "Firme", "Profesional"], key="tono_nuevo")
@@ -53,7 +56,7 @@ with tab1:
         else:
             with st.spinner("✍️ Generando el correo..."):
                 prompt_nuevo = f"""Actúa como un asistente de redacción profesional de correos electrónicos para la empresa TAIYO MOTORS.
-Genera un correo nuevo en español de Latinoamérica, en primera persona del singular.
+Genera un correo nuevo en {idioma_salida_nuevo}, en primera persona del singular.
 
 Idea principal para el correo:
 <<< {idea_nuevo_correo} >>>
@@ -62,6 +65,7 @@ Parámetros seleccionados:
 - Nivel de formalidad: {formalidad_nuevo}
 - Nivel de detalle: {detalle_nuevo}
 - Tono emocional: {tono_emocional_nuevo}
+- Idioma de salida: {idioma_salida_nuevo}
 
 Redacta el correo siguiendo estas reglas:
 1. Usa el nivel de formalidad indicado.
@@ -90,6 +94,9 @@ with tab2:
     correo_recibido = st.text_area("📥 Pega aquí el correo recibido", height=300, max_chars=3000, key="correo_recibido_resp")
     idea_respuesta = st.text_area("💡 Describe brevemente tu idea para el correo de respuesta", height=150, max_chars=1000, key="idea_respuesta_resp")
 
+    # --- Parámetros seleccionados ---
+    st.subheader("Parámetros seleccionados")
+    idioma_salida = st.selectbox("🌐 Idioma de salida", ["Español", "Inglés"], key="idioma_resp")
     formalidad = st.selectbox("🎩 Nivel de formalidad", ["Alto", "Medio", "Bajo"], key="formalidad_resp")
     detalle = st.selectbox("🧾 Tamaño del correo", ["Breve", "Medio", "Detallado"], key="detalle_resp")
     tono_emocional = st.selectbox("🎭 Tono emocional", ["Neutro", "Cortés", "Cercano", "Empático", "Firme", "Profesional"], key="tono_resp")
@@ -101,7 +108,7 @@ with tab2:
         else:
             with st.spinner("✍️ Generando la respuesta..."):
                 prompt = f"""Actúa como un asistente de redacción profesional de correos electrónicos para la empresa TAIYO MOTORS.
-Genera la respuesta en español de Latinoamérica, en primera persona del singular, como si la respuesta la enviara un individuo.
+Genera la respuesta en {idioma_salida}, en primera persona del singular, como si la respuesta la enviara un individuo.
 
 Correo recibido:
 <<< {correo_recibido} >>>
@@ -113,6 +120,7 @@ Parámetros seleccionados:
 - Nivel de formalidad: {formalidad}
 - Nivel de detalle: {detalle}
 - Tono emocional: {tono_emocional}
+- Idioma de salida: {idioma_salida}
 
 Redacta la respuesta siguiendo estas reglas:
 1. Usa el nivel de formalidad indicado.
